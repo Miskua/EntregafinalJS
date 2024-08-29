@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap'); /* Fuente medieval */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Pirata One', cursive; 
-    background-image: url('/img/fondo.jpg');
+    background-image: url('img/fondo.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; 
