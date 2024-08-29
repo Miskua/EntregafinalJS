@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "name": "Báculo",
+        "description": "Un poderoso báculo usado para canalizar magia.",
+        "image": "img/baculo.jpg"
+    },
+    {
+        "id": 1,
+        "name": "Espada",
+        "description": "Una espada afilada, ligera y mortífera.",
+        "image": "img/espada.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Daga",
+        "description": "Una pequeña daga rápida y letal en combate cercano.",
+        "image": "img/daga.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Arco",
+        "description": "Un arco que permite disparar flechas con gran precisión.",
+        "image": "img/arcoyflecha.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Lanza",
+        "description": "Una lanza de largo alcance para ataques certeros.",
+        "image": "img/lanza.jpg"
+    }
+]

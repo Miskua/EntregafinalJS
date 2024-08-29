@@ -1,57 +1,71 @@
+document.addEventListener('DOMContentLoaded', function () {
+    
+    fetch('weapons.json')
+        .then(response => response.json())
+        .then(data => {
+            const weaponsContainer = document.getElementById('weapons-container');
 
-let currentWeapon = ''; 
+            
+            data.forEach(weapon => {
+                const img = document.createElement('img');
+                img.src = weapon.image;
+                img.alt = weapon.name;
+                img.classList.add('weapon');
+                img.dataset.id = weapon.id;
+                weaponsContainer.appendChild(img);
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const selectedWeapon = localStorage.getItem('selectedWeapon');
-    if (selectedWeapon) {
-        showDescription(selectedWeapon);
-        document.getElementById('clear-selection').style.display = 'inline-block';
+                
+                img.addEventListener('click', function () {
+                    showWeaponDetails(weapon);
+                });
+            });
+        });
+
+    
+    function showWeaponDetails(weapon) {
+        const descriptionContainer = document.getElementById('description-container');
+        const weaponDescription = document.getElementById('weapon-description');
+        const chooseWeaponButton = document.getElementById('choose-weapon');
+        const clearSelectionButton = document.getElementById('clear-selection');
+
+        weaponDescription.textContent = weapon.description;
+        descriptionContainer.classList.add('visible');
+
+        chooseWeaponButton.onclick = function () {
+            localStorage.setItem('selectedWeapon', JSON.stringify(weapon));
+            clearSelectionButton.style.display = 'block';
+        };
+
+        clearSelectionButton.onclick = function () {
+            localStorage.removeItem('selectedWeapon');
+            clearSelectionButton.style.display = 'none';
+            descriptionContainer.classList.remove('visible');
+        };
+
+        
+        if (localStorage.getItem('selectedWeapon')) {
+            clearSelectionButton.style.display = 'block';
+        }
     }
+
+    
+    Swal.fire({
+        title: '¿Estás listo?',
+        showDenyButton: true,
+        confirmButtonText: 'SI',
+        denyButtonText: 'NO',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('weapons-container').style.display = 'flex';
+        } else if (result.isDenied) {
+            Swal.fire({
+                title: '¡Gallina!',
+                imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN5MEs6BsC8BhZLkjENgZTPEWYgKJsL0cHwA&s',
+                imageWidth: 400,
+                imageHeight: 200,
+                confirmButtonText: 'OK',
+                onClose: () => window.close()
+            });
+        }
+    });
 });
-
-function showDescription(weapon) {
-    currentWeapon = weapon; 
-
-    let description = '';
-
-    switch(weapon) {
-        case 'báculo':
-            description = 'El báculo es una herramienta mágica que canaliza poderes místicos.';
-            break;
-        case 'hacha':
-            description = 'El hacha es un arma poderosa, ideal para cortar a través de enemigos con fuerza bruta.';
-            break;
-        case 'espada':
-            description = 'La espada es un arma versátil, ligera y rápida, usada en el combate cuerpo a cuerpo.';
-            break;
-        case 'daga':
-            description = 'La daga es un arma pequeña y ágil, perfecta para ataques rápidos y letales.';
-            break;
-        case 'arco':
-            description = 'El arco permite atacar a larga distancia con precisión y rapidez.';
-            break;
-        case 'lanza':
-            description = 'La lanza es un arma larga que proporciona ventaja en combate de alcance.';
-            break;
-    }
-
-    const descriptionContainer = document.getElementById('weapon-description');
-    descriptionContainer.innerHTML = `
-        <p>${description}</p>
-        <button class="choose-weapon-btn" onclick="saveWeapon()">Elegir Arma</button>
-    `;
-    descriptionContainer.style.display = 'block';
-}
-
-function saveWeapon() {
-    localStorage.setItem('selectedWeapon', currentWeapon); 
-    alert('Has elegido: ' + currentWeapon);
-    document.getElementById('clear-selection').style.display = 'inline-block';
-}
-
-function clearSelection() {
-    localStorage.removeItem('selectedWeapon');
-    currentWeapon = '';
-    document.getElementById('weapon-description').style.display = 'none';
-    document.getElementById('clear-selection').style.display = 'none';
-}

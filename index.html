@@ -1,41 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elije un Arma</title>
-    <link rel="stylesheet" href="css/main.css">
-    <script src="./main.js" defer></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=MedievalSharp:wght@400;700&display=swap">
+    <title>Elige un Arma</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
-    <h1>Elije un Arma</h1>
-    <div class="weapon-container">
-        <div class="weapon-item" onclick="showDescription('báculo')">
-            <img src="img/baculo.jpg" alt="Báculo">
-        </div>
-        <div class="weapon-item" onclick="showDescription('hacha')">
-            <img src="img/hacha.jpeg" alt="Hacha">
-        </div>
-        <div class="weapon-item" onclick="showDescription('espada')">
-            <img src="img/espada.jpg" alt="Espada">
-        </div>
-        <div class="weapon-item" onclick="showDescription('daga')">
-            <img src="img/daga.jpg" alt="Daga">
-        </div>
-        <div class="weapon-item" onclick="showDescription('arco')">
-            <img src="img/arcoyflecha.jpg" alt="Arco">
-        </div>
-        <div class="weapon-item" onclick="showDescription('lanza')">
-            <img src="img/lanza.jpg" alt="Lanza">
+    <h1>Elige un Arma</h1>
+
+    <div id="weapons-container" style="display: none;"></div>
+
+    <div id="description-container">
+        <div class="description-box">
+            <p id="weapon-description"></p>
+            <button id="choose-weapon" class="choose-weapon">Elegir Arma</button>
+            <button id="clear-selection" class="clear-selection">Borrar Selección</button>
         </div>
     </div>
-    
-    <div id="weapon-description" class="weapon-description-container"></div>
-    <button id="clear-selection" class="clear-selection-btn" style="display:none;" onclick="clearSelection()">Borrar Selección</button>
 
     <footer>
         <p>Todos los derechos reservados</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>
